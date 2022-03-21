@@ -1,0 +1,26 @@
+{
+  "name": "sit725-2022-t1-prac2",
+  "version": "1.0.0",
+  "description": "week 2 prac for SIT725 2022",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShiroRan/sit725-2022-t1-prac2.git"
+  },
+  "keywords": [
+    "Expressm",
+    "NodeJs"
+  ],
+  "author": "Zhehao ZHOU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShiroRan/sit725-2022-t1-prac2/issues"
+  },
+  "homepage": "https://github.com/ShiroRan/sit725-2022-t1-prac2#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
