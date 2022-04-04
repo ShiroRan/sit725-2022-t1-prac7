@@ -4,7 +4,6 @@
   "description": "week 2 prac for SIT725 2022",
   "main": "server.js",
   "scripts": {
-    
     "start": "node server.js"
   },
   "repository": {
