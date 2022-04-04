@@ -1,5 +1,6 @@
-# sit725-2022-t1-prac2
-This is a very basic node express application that host a web application. This aplication tries to demonstrate a creation of very simple express app and tries to create a few api's to bring some changes in data.
+# sit725-2022-t1-prac3
+
+This is a demo application that tries to use a few components from materialize and through this practical we try to have some fun with Materialize and its components
 
 # To Run the application
 npm install
