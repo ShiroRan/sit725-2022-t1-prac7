@@ -1,9 +1,8 @@
-   .swiper-container {
-   //你可以在这里设置宽高
+   .carousel-container {
      width: 100%;
      height: 100%;
    }
-   .swiper-slide {
+   .carousel-slide {
      text-align: center;
      font-size: 18px;
      background: #fff;
@@ -18,8 +17,14 @@
      -webkit-align-items: center;
      align-items: center;
    }
-   img{
+   .img{
     width: 100%;
     height: 100%;
    }
 
+
+   .logo{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+  }

@@ -14,8 +14,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Custom Style Sheet-->
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/media.css">
-<!-- Link Swiper-->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css" rel="external nofollow" >
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 </head>
@@ -23,7 +21,7 @@
     <nav>
         <div class="nav-wrapper navbar-size" style=" background-color: #66ccff;">
           <a href="#" class="brand-logo">
-			  <img class="user-image-size" src="images/logo.png" /></a>
+			  <img class="logo" src="img/logo.png" /></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a target="_blank" href="https://www.linkedin.com/in/zhehao-zhou-28643018b/">LinkedIn</a></li>
           </ul>
@@ -41,32 +39,34 @@
               <a class="waves-effect waves-light btn click-me-button modal-trigger" id="clickMeButton" data-target="modal1"><i class="material-icons left">auto_fix_high</i>Click Me</a>
             </div>
           </div>
-<!-- 来个轮播图插件 -->
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="img/1.jpg" alt=""></div>
-    <div class="swiper-slide"><img src="img/2.jpg" alt=""></div>
-    <div class="swiper-slide"><img src="img/3.jpg" alt=""></div>
-	<div class="swiper-slide"><img src="img/4.jpg" alt=""></div>
+<!-- carousel -->
+<div class="carousel-container">
+  <div class="carousel-wrapper">
+    <div class="carousel-slide"><img src="img/1.jpg" alt=""></div>
+    <div class="carousel-slide"><img src="img/2.jpg" alt=""></div>
+    <div class="carousel-slide"><img src="img/3.jpg" alt=""></div>
+	<div class="carousel-slide"><img src="img/4.jpg" alt=""></div>
     //添加图片
   </div>
   <!-- Add Pagination -->
-  <div class="swiper-pagination"></div>
+  <div class="carousel-pagination"></div>
   <!-- Add Arrows -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
+  <div class="carousel-button-next"></div>
+  <div class="carousel-button-prev"></div>
 </div>
 
-<h1>Media station</h1>
-<div class="grid" id="grid">
-  <photo-card img="img/1001.jpg" ></photo-card>
-  <photo-card img="img/1002.jpg" ></photo-card>
-  <photo-card img="img/1003.jpg" ></photo-card>
-  <photo-card img="img/1004.jpg" ></photo-card>
-  <photo-card img="img/1005.jpg" ></photo-card>
-  <photo-card img="img/1006.jpg" ></photo-card>
-  <photo-card img="img/1007.jpg" ></photo-card>
-  <photo-card img="img/1008.jpg" ></photo-card>
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card">
+      <div class="card-image">
+        <img src="img/001.jpg">
+        <span class="card-title">Card Title</span>
+      </div>
+      <div class="card-content">
+        <p></p>
+      </div>
+    </div>
+  </div>
 </div>
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
