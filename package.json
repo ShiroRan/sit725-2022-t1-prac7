@@ -1,7 +1,7 @@
 {
-  "name": "sit725-2022-t1-prac2",
+  "name": "sit725-2022-t1-prac4",
   "version": "1.0.0",
-  "description": "week 2 prac for SIT725 2022",
+  "description": "week 4 prac for SIT725 2022",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
