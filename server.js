@@ -1,92 +1,82 @@
-const express = require('express');
-var cors = require("cors")
-const app = express();
-const { MongoClient, ServerApiVersion } = require('mongodb');
+require("dotenv").config();
+const express= require("express");
+const cors = require("cors");
+const app= express();
+
+const MongoClient = require("mongodb").MongoClient;
+// Connect to the database
+const uri = "mongodb+srv://" + process.env.MONGO_USER + ":" + process.env.MONGO_PASSWORD + "@sit725.pidyf.mongodb.net/SIT725?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 let projectCollection;
 
-//Database connection
-
-
-const uri = "mongodb+srv://admin:admin@cluster0.t53lw.mongodb.net/sit725_2022?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-const createColllection = (collectionName) => {
-    client.connect((err,db) => {
-        projectCollection = client.db().collection(collectionName);
-        if(!err) {
-            console.log('MongoDB Connected')
-        }
-        else {
-            console.log("DB Error: ", err);
-            process.exit(1);
-        }
-    })
-}
-
-
-app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended:false}));
 app.use(cors());
-
-// app.get('/', function (req, res) {
-//   res.send('Hello World');
-// })
-
-//Database project getter setter
-const insertProjects = (project,callback) => {
-    projectCollection.insert(project,callback);
-}
 
 const getProjects = (callback) => {
     projectCollection.find({}).toArray(callback);
-}
-
-//GET API for projects
-app.get('/api/projects',(req,res) => {
-    getProjects((err,result) => {
-        if(err) {
-            res.json({statusCode: 400, message: err})
-        }
-        else {
-            res.json({statusCode: 200, message:"Success", data: result})
-        }
-    })
-})
-
-//POST API to insert projects
-app.post('/api/projects',(req,res) => {
-    console.log("New Project added", req.body)
-    var newProject = req.body;
-    insertProjects(newProject,(err,result) => {
-        if(err) {
-            res.json({statusCode: 400, message: err})
-        }
-        else {
-            res.json({statusCode: 200, message:"Project Successfully added", data: result})
-        }
-    })
-})
-
-const addNumbers = (number1, number2) => {
-    var num1 = parseInt(number1);
-    var num2 = parseInt(number2);
-    return num1 + num2;
 };
 
-app.get("/addTwoNumbers", (req, res) => {
-    var number1 = req.query.number1;
-    var number2 = req.query.number2;
-    var result = addNumbers(number1, number2);
-    res.json({
-        statusCode: 200,
-        data: result,
-        message: "Success"
+const insertProject = (project, callback) => {
+    projectCollection.insert(project, callback);
+};
+
+const createCollection = (collectionName) => {
+    client.connect((err, db) => {
+        projectCollection = client.db().collection(collectionName);
+        if (!err) {
+            console.log("Successfully created or acquired collection.");
+        } else {
+            console.error("Database error: " + err);
+            process.exit(1);
+        }
+    });
+};
+
+const addTwoNumbers = (n1, n2) => {
+    n1 = parseInt(n1);
+    n2 = parseInt(n2);
+    let result = (n1 + n2) || null;
+    return result;
+}
+
+// Add two numbers API
+app.get('/addTwoNumbers', (req, res) => {
+    let n1 = req.query.n1;
+    let n2 = req.query.n2;
+    let result = addTwoNumbers(n1, n2);
+    if (result == null) {
+        res.json({ statusCode: 400, result: result });
+    } else {
+        res.json({ statusCode: 200, result: result });
+    }
+});
+
+app.get('/api/projects', (req,res) => {
+    getProjects((err, result) => {
+        if (err) {
+            res.json({ statusCode: 400, message: err });
+        } else {
+            res.json({ statusCode: 200, message: "Success", data: result });
+        }
     });
 });
 
-var port = process.env.port || 3111;
+app.post('/api/projects', (req,res) => {
+    let project = req.body;
+    insertProject(project, (err, result) => {
+        if (err) {
+            res.json({ statusCode: 400, message: err });
+        } else {
+            res.json({ statusCode: 200, message: "Successfully added new project", data: result });
+        }
+    });
+});
 
-app.listen(port, () => {
-    console.log("App running at http://localhost: " + port);
-    createColllection("pets")
+const port = 3000;
+
+app.listen(port, ()=> {
+    console.log("App listening to: " + port);
+    createCollection("pets");
 });
