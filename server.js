@@ -4,6 +4,8 @@ const app = express();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 let projectCollection;
 
+let http = require('http').createServer(app);
+let io = require('socket.io')(http);
 //Database connection
 
 
@@ -101,9 +103,21 @@ app.get("/addTwoNumbers/:firstNumber/:secondNumber", (req, res) => {
     }
 });
 
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  setInterval(()=>{
+    socket.emit('number', parseInt(Math.random()*10));
+  }, 1000);
+
+});
+
 var port = process.env.port || 3000;
 
 app.listen(port, () => {
-    console.log("App running at http://localhost: " + port);
+    console.log("App running at http://localhost:" + port);
     createColllection("pets")
 });

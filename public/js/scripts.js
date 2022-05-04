@@ -51,7 +51,11 @@ const addCards = (items) => {
     });
 }
 
-
+let socket = io();
+socket.on('number', (msg) => {
+    console.log('Random number: ' + msg);
+    $("#pageTitle").html("Welcome to SIT 725 Week 6: "+ msg)
+})
 
 $(document).ready(function(){
     $('.materialboxed').materialbox();
